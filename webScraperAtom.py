@@ -1,1 +1,3 @@
-import pandas as pd
+import pandas 
+import scipy
+import pytesseract
