@@ -1,5 +1,6 @@
 # WebScraper
-
+This python project is a webscraper app.
+-----------------------------------------------------------------------------------------------------------------------------------
 Requirements
 1) Project is uploaded to your GitHub repository and shows at minimum 5 separate commits
 
