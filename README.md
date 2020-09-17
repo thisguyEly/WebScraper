@@ -16,3 +16,4 @@ pip install pandas
 
 pip install scipy
 
+import pytesseract
