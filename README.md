@@ -1,6 +1,8 @@
-# WebScraper
+# About this project
 This python project is a webscraper app.
 -----------------------------------------------------------------------------------------------------------------------------------
+The purpose of this web scraper is to identify helpful tools and methods and catalog them into a single place for parents of children with autism.
+
 Requirements
 1) Project is uploaded to your GitHub repository and shows at minimum 5 separate commits
 
