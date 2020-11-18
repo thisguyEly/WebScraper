@@ -1,15 +1,17 @@
 # Pandas for converting resultset to csv
-from urllib.request import urlopen
+import requests
 from bs4 import BeautifulSoup as bs
+import csv
+import html5lib
 import pandas as pd
 import scipy as sy
+import re
 #import pytesseract as pt
-#import request as r
 #import scrapy.crawler
 #import scrapy
 #from datetime import date
 
-# ImportLibrarHere
+# Import Library Here
 from tkinter import *
 from tkinter import ttk
 import time
@@ -17,6 +19,17 @@ from PIL import ImageTk, Image
 import os
 import sqlite3
 from tkinter import messagebox
+
+# -----------------------------------------------------------------------------------
+# REQUIREMENTS
+# -----------------------------------------------------------------------------------
+# Connect to an external/3rd party API and read data into your app
+# Visualize data in a graph, chart, or other visual representation of data
+# Create a class, then create at least one object of that class and populate it with data
+# Implement a regular expression (regex) to ensure a field either a phone number or an email address is always stored and displayed in the same format
+# Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
+# -----------------------------------------------------------------------------------
+
 
 # SplashScreen
 sroot = Tk()
@@ -40,7 +53,6 @@ lbl1.pack(padx=100, pady=100)
 
 
 # MainScreen
-
 def mainroot():
 
     root = Tk()
@@ -50,22 +62,22 @@ def mainroot():
     root.configure(bg='blue')
     root.title("Gerbilcorn:   Main Window")
 
-# Add Window Functionality Here(like widgets, etc)
-#
-# End Of Main Window
-#
-# After this call the main window here
 
 def call_mainroot():
     sroot.destroy()
     mainroot()
 
 
-sroot.after(4000, call_mainroot)  # TimeOfSplashScreen
-mainloop()
-
+# Functionality, buttons etc
+root = Tk()
+l = Label(root, text="Upcoming Sensory Friendly Showings")
+l.pack()
+b = Button(root, text="Check Times")
+b.pack(side=LEFT)
 
 # Help option for the user
+
+
 def show_help():
     print("Enter 'Help' for this helper.")
     print("Enter 'Done' to stop searching.")
@@ -73,12 +85,44 @@ def show_help():
 
 show_help()
 
-# BeautifulSoup for scraping html in sites
+l = Label(root, text="Help")
+l.pack()
+b2 = Button(root, text="Click Here", command=show_help)
+b2.pack(side=LEFT)
+
+# Time Of Splash Screen
+sroot.after(4000, call_mainroot)
+mainloop()
+
+# End Of Main Window
+
+# REQUIREMENT: Create a class, then create at least one object of that class and populate it with data
+
 
 # 1st reference site = featoflouisville
-url = "https://featoflouisville.org/calendar/"
-page = urlopen(url)
-html_bytes = page.read()
-html = html_bytes.decode("utf-8")
-soup.find('span').get_text("sensory friendly")
-# urllib.request.urlopen()
+URL = "https://featoflouisville.org/calendar/"
+r = requests.get(URL)
+print(r.content)
+
+soup = bs(r.content, 'html5lib')
+print(soup.prettify())
+
+shows = []  # a list to store quotes
+table = soup.find('span', attrs={'class': 'simcal-event-title'})
+
+for row in table.findALL('span',
+                         attrs={'class': 'col-6 col-lg-3 text-center margin-30px-bottom sm-margin-30px-top'}):
+    show = {}
+    # quote = ['theme'] = row.h5.text
+    show['url'] = row.a['href']
+    show['img'] = row.img['src']
+    shows.append(show)
+
+filename = 'Autism_Friendly_Showings.csv'
+with open(filename, 'w', newline='') as f:
+    w = csv.DictWriter(f, ['theme', 'url', 'img'])
+    w.writeheader()
+    for show in shows:
+        w.writerow(show)
+
+# Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
