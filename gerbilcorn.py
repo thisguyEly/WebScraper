@@ -98,22 +98,19 @@ mainloop()
 
 # REQUIREMENT: Create a class, then create at least one object of that class and populate it with data
 
-
 # 1st reference site = featoflouisville
 URL = "https://featoflouisville.org/calendar/"
 r = requests.get(URL)
-print(r.content)
+print(r.content.prettify())
 
 soup = bs(r.content, 'html5lib')
 print(soup.prettify())
 
 shows = []  # a list to store quotes
-table = soup.find('span', attrs={'class': 'simcal-event-title'})
+table = soup.find('div')
 
-for row in table.findALL('span',
-                         attrs={'class': 'col-6 col-lg-3 text-center margin-30px-bottom sm-margin-30px-top'}):
+for row in table.findALL('div', class_='simcal-event-title'):
     show = {}
-    # quote = ['theme'] = row.h5.text
     show['url'] = row.a['href']
     show['img'] = row.img['src']
     shows.append(show)
@@ -123,6 +120,6 @@ with open(filename, 'w', newline='') as f:
     w = csv.DictWriter(f, ['theme', 'url', 'img'])
     w.writeheader()
     for show in shows:
-        w.writerow(show)
+        w.writerow(show.prettify())
 
 # Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
