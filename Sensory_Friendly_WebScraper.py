@@ -27,15 +27,14 @@ title = match_results.group()
 
 pages = []
 
-for item in pages:
-    page = requests.get(item)
-    soup = BeautifulSoup(page.text, 'html.parser')
-
-    last_links = soup.find(class_='AlphaNav')
-
 txt = "sensory"
 x = re.search(r"\bs\w+", txt)
 # print(x.group())
+
+for item in pages:
+    page = requests.get(item)
+    soup = BeautifulSoup(page.text, 'html.parser')
+    last_links = soup.find('table', attrs={'class': 'resultsTable'})
 
 # create csv file for results
 f = csv.writer(open('Sensory_Friendly_Events.csv', 'w'))
