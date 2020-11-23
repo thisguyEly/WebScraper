@@ -1,21 +1,14 @@
-# About this project
-This python project is a webscraper app.
------------------------------------------------------------------------------------------------------------------------------------
-The purpose of this web scraper is to identify helpful tools and methods and catalog them into a single place for parents of children with autism.
+READ ME
 
-Requirements
-1) Project is uploaded to your GitHub repository and shows at minimum 5 separate commits
+This is a webscraper which pulls sensory friendly movie times from an autism friendly webpage.
 
-2) Project includes a README file that explains the following:
-    A one paragraph or longer description of what your project is
-      Which 3+ features you have included from the below lists to meet the requirements
-      
-Any special instructions required for the reviewer to run your project
-Choose at least 3 items on the Features List below and implement them in your project
-We recommend you pick a 4th item (or more!) to add, just in case something goes wrong with one of your other items - 3 is only the minimum requirement
------------------------------------------------------------------------------------------------------------------------------------
-pip install pandas          
+Installation and Running
 
-pip install scipy
+    Download and install Python 3
+    Clone repository "Webscraper"
+    Run Sensory_Friendly_WebScraper.py in bash or powershell terminal
 
-import pytesseract
+Overview:
+
+
+Requirements:
