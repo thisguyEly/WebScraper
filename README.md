@@ -6,6 +6,7 @@ Installation and Running
 
     Download and install Python 3
     Clone repository "Webscraper"
+    #Run gerbilcorn.py in bash or powershell terminal
     Run Sensory_Friendly_WebScraper.py in bash or powershell terminal
 
 Overview:
