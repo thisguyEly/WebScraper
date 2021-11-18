@@ -7,10 +7,10 @@ Installation and Running
     Download and install Python 3
     Clone repository "Webscraper"
     
-pip Install requests
-pip install pandas
-pip Install BeautifulSoup4
-pip install lxml
+    pip Install requests
+    pip install pandas
+    pip Install BeautifulSoup4
+    pip install lxml
     
     Run Sensory_Friendly_WebScraper.py in bash or powershell terminal
 
