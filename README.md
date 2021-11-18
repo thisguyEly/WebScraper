@@ -6,7 +6,12 @@ Installation and Running
 
     Download and install Python 3
     Clone repository "Webscraper"
-    #Run gerbilcorn.py in bash or powershell terminal
+    
+pip Install requests
+pip install pandas
+pip Install BeautifulSoup4
+pip install lxml
+    
     Run Sensory_Friendly_WebScraper.py in bash or powershell terminal
 
 Overview:
