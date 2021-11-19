@@ -1,48 +1,49 @@
-import requests
-import csv
-import re
-import random
 from bs4 import BeautifulSoup
-import time
-from urllib.request import urlopen
+import lxml
+import pandas as pd
+import csv
+import requests
+import urllib.parse
+urllib.request.http.client
+#import re
+#import time
 
 # Open webpage
-url = "https://featoflouisville.org/calendar/"
-response = requests.get(url)
-page = urlopen(url)
+#url = requests.get("https://www.amctheatres.com/programs/sensory-friendly-films")
+#soup = BeautifulSoup(url.content,'html.parser')
 
-soup = BeautifulSoup(response.text, "html.parser")
-soup.findAll('a')
+data = []
+movie = []
 
-html_bytes = page.read()
-html = html_bytes.decode("utf-8")
+# Pull movie date & times
 
-# pull sensory friendly events 
-pattern = "<title.*?>.*?</title.*?>"
-txt = "sensory"
-match_results = re.search(r"\bS\w+",txt,re.IGNORECASE)
-title = match_results.group()
+def main():
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.37"
+    URL = "https://www.amctheatres.com/programs/sensory-friendly-films"
+    response = requests.get(URL, headers={'User-Agent': user_agent})
+    html = response.content
 
-# print(match_results.group())
+    soup = BeautifulSoup(html, "lxml")
+    print(soup.contents)
 
-pages = []
+    for h3 in soup.find_all('div', attrs={'class': 'Slide'}):
+        movie.append(h3.get_text(strip=True))
+        data.append(movie)
+    for span in soup.find_all('span', 'class=MoviePosters__released-month clearfix'):
+        movie.append(span.get_text(strip=True))
+        break
 
-txt = "sensory"
-x = re.search(r"\bs\w+", txt)
-# print(x.group())
+main()
 
-for item in pages:
-    page = requests.get(item)
-    soup = BeautifulSoup(page.text, 'html.parser')
-    last_links = soup.find('table', attrs={'class': 'resultsTable'})
+# CSV File
+df = pd.DataFrame(data, columns={"MovieTitle",
+                                 "ShowTime"})
+df.to_csv('sensory_friendly_movies.csv', encoding='utf-8-sig', index=False)
 
-# create csv file for results
-f = csv.writer(open('Sensory_Friendly_Events.csv', 'w'))
-f.writerow(['Event Title ' , ' Link']) 
+#html_bytes = webpage.read()
+#html = html_bytes.decode("utf-8")
 
-title_index = html.find("<title>")
-start_index = title_index + len("<title>")
-end_index = html.find("</title>")
-
-title = html[start_index:end_index]
-title
+# save csv file
+# filename.close()
+# filename.to_csv('Sensory_Friendly_Events.csv')
+# data.close()
