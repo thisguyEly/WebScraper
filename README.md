@@ -11,6 +11,7 @@ Installation and Running
     pip install pandas
     pip Install BeautifulSoup4
     pip install lxml
+    from datetime import date
     
     Run Sensory_Friendly_WebScraper.py in bash or powershell terminal
 
@@ -20,9 +21,10 @@ this code calls the feat of louisville autism site, scrapes sensory friendly eve
 
 Project Requirements:
 
-    Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
-    Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
-    Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
+    # Requirement - Data visualization - Countdown (days) to event date
+    # Shows how many days are left till showtime - user simply needs to update current date
+    # Building a web scraper topPull movie date from the AMC site. 
+    # CSV File - Writing scraped movie into into a csv for user access
 
 Additional Project Requirements:
 
