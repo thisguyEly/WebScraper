@@ -12,10 +12,11 @@ urllib.request.http.client
 #url = requests.get("https://www.amctheatres.com/programs/sensory-friendly-films")
 #soup = BeautifulSoup(url.content,'html.parser')
 
+#creating a list to retrieve values for movie dates
 data = []
 movie = []
 
-# Pull movie date & times
+# Building a web scraper topPull movie date from the AMC site. 
 
 def main():
     user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.37"
@@ -35,10 +36,20 @@ def main():
 
 main()
 
-# CSV File
+# CSV File - Writing scraped movie into into a csv for user access
 df = pd.DataFrame(data, columns={"MovieTitle",
                                  "ShowTime"})
 df.to_csv('sensory_friendly_movies.csv', encoding='utf-8-sig', index=False)
+
+# Requirement - Data visualization - Countdown (days) to event date
+# Shows how many days are left till showtime - user simply needs to update current date
+
+from datetime import date
+current_date = date(2021, 11, 24)
+end_date = date(2021, 11, 27)
+delta = end_date - current_date
+print(delta.days)
+
 
 #html_bytes = webpage.read()
 #html = html_bytes.decode("utf-8")
